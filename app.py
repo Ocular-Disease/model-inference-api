@@ -21,6 +21,7 @@ s3 = boto3.Session(
 print('Downloading model...')
 download_model = s3.download_file('ocular-dataset', 'model.h5', 'model.h5')
 print('Model downloaded')
+del download_model
 model = load_model('model.h5')
 
 
@@ -88,6 +89,11 @@ def take_inp(url: str):
     del i
 
     return {'prediction': result}
+
+
+@app.get('/health', response_class=JSONResponse, status_code=200)
+def health():
+    return {'status': 'ok'}
 
 
 if __name__ == '__main__':
