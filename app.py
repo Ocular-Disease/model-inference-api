@@ -4,10 +4,15 @@ from starlette.responses import JSONResponse
 from tensorflow.keras.models import load_model
 import io
 import boto3
+import os
 
 app = FastAPI()
 
-s3 = boto3.client('s3')
+# from enviroment variables
+s3 = boto3.Session(
+    aws_access_key_id=os.environ['AWS_ACCESS_KEY'],
+    aws_secret_access_key=os.environ['AWS_SECRET_KEY']
+).client('s3')
 
 
 download_model = s3.get_object(Bucket='ocular-dataset', Key='model.h5')
