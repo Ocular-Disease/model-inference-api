@@ -1,14 +1,12 @@
-FROM  python:3.7-alpine
+FROM  python:3.8
+LABEL maintainer="Mohamed Belkamel"
 
 WORKDIR /app
 
-LABEL maintainer="Mohamed Belkamel"
-
-# Install dependencies
-RUN apk add --no-cache python3-pip
-RUN pip3 install -r requirements.txt
-
-COPY . /app
+COPY . .
 
 
-CMD ["uvicorn", "app:app",  "--host=0.0.0.0",  "--port=${PORT:-5000}"]
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+
+CMD ["uvicorn", "app:app",  "--host=0.0.0.0",  "--port" "5000"]
