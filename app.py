@@ -13,10 +13,8 @@ load_dotenv()
 app = FastAPI()
 
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
-    "http://localhost",
-    "http://localhost:8080",
+    "https://front-end-react-nu.vercel.app"
+    "http://localhost:3000",
 ]
 
 app.add_middleware(
