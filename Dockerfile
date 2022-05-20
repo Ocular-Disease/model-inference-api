@@ -2,6 +2,10 @@ FROM  python:3.8
 
 LABEL maintainer="Mohamed Belkamel"
 
+WORKDIR /app
+
+COPY . /app
+
 
 RUN apt-get update && apt-get install -y python3-pip
 
