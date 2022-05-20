@@ -5,6 +5,9 @@ from tensorflow.keras.models import load_model
 import io
 import boto3
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
 
@@ -15,8 +18,10 @@ s3 = boto3.Session(
 ).client('s3')
 
 
-download_model = s3.get_object(Bucket='ocular-dataset', Key='model.h5')
-model = load_model(io.BytesIO(download_model['Body'].read()))
+print('Downloading model...')
+download_model = s3.download_file('ocular-dataset', 'model.h5', 'model.h5')
+print('Model downloaded')
+model = load_model('model.h5')
 
 
 def download_image_from_url(url):
