@@ -66,8 +66,9 @@ def take_inp(url: str):
 
     img = download_image_from_url(input_data)
     img = np.array(img)
+    img = img.reshape(1, 224, 224, 3)
     img = img / 255.0
-    img = np.expand_dims(img, axis=0)
+    img = img.astype(np.float32)
     prediction = model.predict(img)
 
     print("------------------")
