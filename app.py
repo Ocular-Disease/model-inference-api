@@ -61,7 +61,7 @@ def take_inp(url: str):
         return {"error": "No input data provided"}
 
     # check if url is s3 url
-    if not input_data.startswith("https://ocular-dataset.s3.eu-central-1"):
+    if (not input_data.startswith("https://ocular-dataset.s3.eu-central-1")) or (not input_data.startswith("https://s3.eu-central-1")):
         return {"error": "Invalid input data"}
 
     img = download_image_from_url(input_data)
