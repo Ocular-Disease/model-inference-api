@@ -15,6 +15,7 @@ app = FastAPI()
 origins = [
     "https://front-end-react-nu.vercel.app",
     "http://localhost:3000",
+    "https://front.gameshakes.com"
 ]
 
 app.add_middleware(
